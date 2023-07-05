@@ -1,13 +1,21 @@
-import { request } from "http"
-import brcypt from "bcrypt"
+import brcypt from 'bcrypt'
 import prisma from '@/app/libs/prismadb'
+import { NextResponse } from 'next/server'
 
-export async funtion POST({request: Request}) {
-    const body = await request.json()
+export async function POST (request: Request) {
+  const body = await request.json()
 
-    const {email, name, password} = body
+  const { email, name, password } = body
 
-    const hashedPassword = await brcypt.hash(password, 12)
+  const hashedPassword = await brcypt.hash(password, 12)
 
-    const user = await prisma 
+  const user = await prisma.user.create({
+    data: {
+      email,
+      name,
+      hashedPassword
+    }
+  })
+
+  return NextResponse.json(user)
 }
