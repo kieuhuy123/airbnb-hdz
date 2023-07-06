@@ -56,7 +56,6 @@ const Modal: React.FC<ModalProps> = ({
       return
     }
     secondaryAction()
-    onSubmit()
   }, [secondaryAction, disabled])
 
   if (!isOpen) {

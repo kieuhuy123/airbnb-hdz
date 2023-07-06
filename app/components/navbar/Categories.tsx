@@ -101,7 +101,6 @@ const Categories = () => {
   const pathname = usePathname()
 
   const isMainPage = pathname === '/'
-  console.log('isMainPage', isMainPage)
 
   if (!isMainPage) {
     return null

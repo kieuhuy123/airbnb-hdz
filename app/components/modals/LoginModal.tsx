@@ -6,8 +6,8 @@ import { AiFillGithub } from 'react-icons/ai'
 import { FcGoogle } from 'react-icons/fc'
 import { useCallback, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
-import useLoginModal from '@/app/hook/useLoginModal'
-import useRegisterModal from '@/app/hook/userRegisterModal'
+import useLoginModal from '@/app/hooks/useLoginModal'
+import useRegisterModal from '@/app/hooks/userRegisterModal'
 import Modal from './Modal'
 import Heading from '../Heading'
 import Input from '../inputs/Input'
@@ -30,7 +30,7 @@ const LoginModal = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = data => {
     setIsLoading(true)
-    console.log('data', { ...data })
+
     signIn('credentials', { ...data, redirect: false }).then(callback => {
       setIsLoading(false)
 

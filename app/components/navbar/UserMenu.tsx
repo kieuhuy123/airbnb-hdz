@@ -3,17 +3,16 @@ import React, { useCallback, useState } from 'react'
 import Avatar from '../Avatar'
 import { AiOutlineMenu } from 'react-icons/ai'
 import MenuItem from './MenuItem'
-import useRegisterModal from '@/app/hook/userRegisterModal'
-import useLoginModal from '@/app/hook/useLoginModal'
+import useRegisterModal from '@/app/hooks/userRegisterModal'
+import useLoginModal from '@/app/hooks/useLoginModal'
 import { User } from '@prisma/client'
 import { signOut } from 'next-auth/react'
-import useRentModal from '@/app/hook/useRentModal'
+import useRentModal from '@/app/hooks/useRentModal'
 
 interface UserMenuProps {
   currentUser?: User | null
 }
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
-  console.log('currentUser', currentUser)
   const registerModal = useRegisterModal()
   const loginModal = useLoginModal()
   const rentModal = useRentModal()
