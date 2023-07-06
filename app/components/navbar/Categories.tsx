@@ -1,3 +1,4 @@
+'use client'
 import Container from '../Container'
 import { TbBeach, TbMountain, TbPool } from 'react-icons/tb'
 import {
@@ -100,6 +101,7 @@ const Categories = () => {
   const pathname = usePathname()
 
   const isMainPage = pathname === '/'
+  console.log('isMainPage', isMainPage)
 
   if (!isMainPage) {
     return null

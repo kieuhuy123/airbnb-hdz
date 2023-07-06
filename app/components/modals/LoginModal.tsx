@@ -7,6 +7,7 @@ import { FcGoogle } from 'react-icons/fc'
 import { useCallback, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import useLoginModal from '@/app/hook/useLoginModal'
+import useRegisterModal from '@/app/hook/userRegisterModal'
 import Modal from './Modal'
 import Heading from '../Heading'
 import Input from '../inputs/Input'
@@ -15,6 +16,7 @@ import Button from '../Button'
 import { useRouter } from 'next/navigation'
 const LoginModal = () => {
   const loginModal = useLoginModal()
+  const registerModal = useRegisterModal()
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
   const {
@@ -42,6 +44,11 @@ const LoginModal = () => {
         toast.error('error')
       }
     })
+  }
+
+  const toggle = () => {
+    loginModal.onClose()
+    registerModal.onOpen()
   }
 
   const bodyContent = (
@@ -91,12 +98,12 @@ const LoginModal = () => {
         }}
       />
       <div className='text-neutral-500 text-center mt-4 font-light'>
-        <span className='mr-3'>Already have an account</span>
+        <span className='mr-3'>{'First time using Airbnb?'}</span>
         <span
-          onClick={loginModal.onClose}
+          onClick={toggle}
           className='text-neutral-800 cursor-pointer hover:underline'
         >
-          Log in
+          {'Create account'}
         </span>
       </div>
     </div>

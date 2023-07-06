@@ -6,6 +6,7 @@ import { FcGoogle } from 'react-icons/fc'
 import { useCallback, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import useRegisterModal from '@/app/hook/userRegisterModal'
+import useLoginModal from '@/app/hook/useLoginModal'
 import Modal from './Modal'
 import Heading from '../Heading'
 import Input from '../inputs/Input'
@@ -15,7 +16,7 @@ import { signIn } from 'next-auth/react'
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal()
-
+  const loginModal = useLoginModal()
   const [isLoading, setIsLoading] = useState(false)
 
   const {
@@ -40,6 +41,11 @@ const RegisterModal = () => {
       .finally(() => {
         setIsLoading(false)
       })
+  }
+
+  const toggle = () => {
+    registerModal.onClose()
+    loginModal.onOpen()
   }
 
   const bodyContent = (
@@ -95,7 +101,7 @@ const RegisterModal = () => {
       <div className='text-neutral-500 text-center mt-4 font-light'>
         <span className='mr-3'>Already have an account</span>
         <span
-          onClick={registerModal.onClose}
+          onClick={toggle}
           className='text-neutral-800 cursor-pointer hover:underline'
         >
           Log in
