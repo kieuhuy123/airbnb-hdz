@@ -17,7 +17,7 @@ model User {
   emailVerified DateTime?
   image String?
   hashedPassword String?
-  creatAt DateTime @default(now())
+  createAt DateTime @default(now())
   
   updateAt DateTime @updatedAt
   favoritIds String[] @db.ObjectId
@@ -54,6 +54,7 @@ model Listing {
   createAt DateTime @default(now())
   category String
   roomCount Int
+  bathroomCount Int
   guestCount Int
   locationValue String
   userId String @db.ObjectId
