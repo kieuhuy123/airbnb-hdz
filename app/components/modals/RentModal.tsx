@@ -1,7 +1,7 @@
 'use client'
 
-import { useCallback, useState, useMemo } from 'react'
-import { FieldValues, useForm } from 'react-hook-form'
+import { useState, useMemo } from 'react'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import useRentModal from '@/app/hooks/useRentModal'
 import Modal from './Modal'
 import Heading from '../Heading'
@@ -15,6 +15,8 @@ import CountrySelect from '../inputs/CountrySelect'
 import dynamic from 'next/dynamic'
 import Counter from '../inputs/Counter'
 import ImageUpload from '../inputs/ImageUpload'
+import Input from '../inputs/Input'
+import axios from 'axios'
 
 enum STEPS {
   CATEGORY = 0,
@@ -29,7 +31,9 @@ const RentModal = () => {
   const rentModal = useRentModal()
 
   const [step, setStep] = useState(STEPS.CATEGORY)
-  console.log('step', step)
+  const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter()
+
   const {
     register,
     handleSubmit,
@@ -56,6 +60,7 @@ const RentModal = () => {
   const guestCount = watch('guestCount')
   const roomCount = watch('roomCount')
   const bathroomCount = watch('bathroomCount')
+  const imageSrc = watch('imageSrc')
 
   const Map = useMemo(
     () =>
@@ -65,8 +70,6 @@ const RentModal = () => {
     [location]
   )
 
-  console.log('category', category)
-  console.log('location', location)
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
       shouldValidate: true,
@@ -80,6 +83,31 @@ const RentModal = () => {
 
   const onNext = () => {
     setStep(value => value + 1)
+  }
+
+  const onSubmit: SubmitHandler<FieldValues> = data => {
+    console.log('data', data)
+    if (step !== STEPS.PRICE) {
+      return onNext()
+    }
+
+    setIsLoading(true)
+
+    axios
+      .post('/api/listing', data)
+      .then(() => {
+        toast.success('Listing Created!')
+        router.refresh()
+        reset()
+        setStep(STEPS.CATEGORY)
+        rentModal.onClose()
+      })
+      .catch(() => {
+        toast.error('Something went wrong')
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
   }
 
   const actionLabel = useMemo(() => {
@@ -176,12 +204,64 @@ const RentModal = () => {
           subtitle='Show guests what your place looks like!'
         />
 
-        <ImageUpload />
+        <ImageUpload
+          value={imageSrc}
+          onChange={value => {
+            setCustomValue('imageSrc', value)
+          }}
+        />
       </div>
     )
   }
 
-  const footerContent = <h1>Hello</h1>
+  if (step === STEPS.DESCRIPTION) {
+    bodyContent = (
+      <div className='flex flex-col gap-8'>
+        <Heading
+          title='How would you describe your place'
+          subtitle='Short and sweet works best!'
+        />
+        <Input
+          id='title'
+          label='Title'
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+        <hr />
+        <Input
+          id='description'
+          label='Description'
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+      </div>
+    )
+  }
+
+  if (step === STEPS.PRICE) {
+    bodyContent = (
+      <div className='flex flex-col gap-8'>
+        <Heading
+          title='Now, set your price'
+          subtitle='How much do you charge per night'
+        />
+        <Input
+          id='price'
+          label='Price'
+          formatPrice
+          type='number'
+          disabled={isLoading}
+          errors={errors}
+          register={register}
+        />
+      </div>
+    )
+  }
+  const footerContent = <h1></h1>
 
   return (
     <Modal
@@ -191,11 +271,10 @@ const RentModal = () => {
       title='Airbnb your home!'
       body={bodyContent}
       footer={footerContent}
-      //   disabled={isLoading}
+      disabled={isLoading}
       isOpen={rentModal.isOpen}
       onClose={rentModal.onClose}
-      onSubmit={onNext}
-      //   onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(onSubmit)}
     />
   )
 }
