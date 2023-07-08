@@ -27,7 +27,7 @@ const useFavorite = ({ listingId, currentUser }: IUseFavorite) => {
       if (!currentUser) {
         return loginModal.onOpen()
       }
-      console.log('Click ne')
+
       try {
         let request
         if (hasFavorited) {

@@ -7,7 +7,6 @@ import ToasterProvider from './providers/ToasterProvider'
 import LoginModal from './components/modals/LoginModal'
 import { getCurrentUser } from './actions/getCurrentUser'
 import RentModal from './components/modals/RentModal'
-
 export const metadata = {
   title: 'Airbnb xin nhe',
   description: 'Airbnb made by hdz'
