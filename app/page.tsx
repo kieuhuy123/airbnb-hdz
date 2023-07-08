@@ -1,12 +1,14 @@
-import Image from 'next/image'
 import Container from './components/Container'
-import { getListings } from './actions/getListings'
 import EmptyState from './components/EmptyState'
 import ListingCard from './components/listings/ListingCard'
+import { getListings } from './actions/getListings'
+import { getCurrentUser } from './actions/getCurrentUser'
 
 export default async function Home () {
   const listings = await getListings()
   console.log('listings', listings)
+
+  const currentUser = await getCurrentUser()
   if (listings?.length === 0) {
     return <EmptyState showReset />
   }
@@ -27,7 +29,13 @@ export default async function Home () {
       '
       >
         {listings?.map((listing: any) => {
-          return <ListingCard key={listing.id} data={listing} />
+          return (
+            <ListingCard
+              key={listing.id}
+              data={listing}
+              currentUser={currentUser}
+            />
+          )
         })}
       </div>
     </Container>
