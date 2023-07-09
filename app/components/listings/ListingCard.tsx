@@ -3,10 +3,10 @@ import useCountries from '@/app/hooks/useCountries'
 import { Listing, Reservation, User } from '@prisma/client'
 import { useRouter } from 'next/navigation'
 import React, { useCallback, useMemo } from 'react'
-import dayjs from 'dayjs'
 import Image from 'next/image'
 import HeartButton from '../HeartButton'
 import Button from '../Button'
+import { format } from 'date-fns'
 
 interface ListingCardProps {
   data: Listing
@@ -28,7 +28,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
 }) => {
   const router = useRouter()
   const { getByValue } = useCountries()
-  console.log('data', data)
+
   const location = getByValue(data.locationValue)
 
   const handleCancel = useCallback(
@@ -60,9 +60,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
     const start = new Date(reservation.startDate)
     const end = new Date(reservation.endDate)
 
-    return `${dayjs(start).format('DD/MM/YYYY')} - ${dayjs(end).format(
-      'DD/MM/YYYY'
-    )}`
+    return `${format(start, 'PP')} - ${format(end, 'PP')}`
   }, [reservation])
 
   return (
