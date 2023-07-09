@@ -20,13 +20,14 @@ export async function getReservations (params: IPrams) {
     }
 
     if (authorId) {
-      query.authorId = authorId
+      query.listing = { userId: authorId }
     }
 
     const reservations = await prisma.reservation.findMany({
       where: query,
       include: {
-        listing: true
+        listing: true,
+        user: true
       },
       orderBy: {
         createdAt: 'desc'

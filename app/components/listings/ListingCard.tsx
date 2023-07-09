@@ -7,6 +7,7 @@ import Image from 'next/image'
 import HeartButton from '../HeartButton'
 import Button from '../Button'
 import { format } from 'date-fns'
+import Avatar from '../Avatar'
 
 interface ListingCardProps {
   data: Listing
@@ -16,6 +17,7 @@ interface ListingCardProps {
   actionLabel?: string
   actionId?: string
   currentUser?: User | null
+  author?: User
 }
 const ListingCard: React.FC<ListingCardProps> = ({
   data,
@@ -24,7 +26,8 @@ const ListingCard: React.FC<ListingCardProps> = ({
   disabled,
   actionLabel,
   actionId = '',
-  currentUser
+  currentUser,
+  author
 }) => {
   const router = useRouter()
   const { getByValue } = useCountries()
@@ -80,6 +83,17 @@ const ListingCard: React.FC<ListingCardProps> = ({
             <HeartButton listingId={data.id} currentUser={currentUser} />
           </div>
         </div>
+        {author ? (
+          <div className='flex flex-row items-center'>
+            <div className='pr-3'>
+              <Avatar src={author?.image} />
+            </div>
+            <div> {author?.name}</div>
+          </div>
+        ) : (
+          ''
+        )}
+
         <div className='font-semibold text-lg'>
           {location?.region}, {location?.label}
         </div>

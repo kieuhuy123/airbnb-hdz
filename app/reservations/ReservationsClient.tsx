@@ -10,18 +10,18 @@ import Container from '@/app/components/Container'
 import ListingCard from '@/app/components/listings/ListingCard'
 import { Reservation, User } from '@prisma/client'
 
-interface TripsClientProps {
+interface ReservationsClientProps {
   reservations: Reservation[]
   currentUser?: User | null
 }
 
-const TripsClient: React.FC<TripsClientProps> = ({
+const ReservationsClient: React.FC<ReservationsClientProps> = ({
   reservations,
   currentUser
 }) => {
   const router = useRouter()
   const [deletingId, setDeletingId] = useState('')
-  console.log('reservations', reservations)
+  console.log('reservations of guest', reservations)
   const onCancel = useCallback(
     (id: string) => {
       setDeletingId(id)
@@ -32,8 +32,8 @@ const TripsClient: React.FC<TripsClientProps> = ({
           toast.success('Reservation cancelled')
           router.refresh()
         })
-        .catch(error => {
-          toast.error(error?.response?.data?.error)
+        .catch(() => {
+          toast.error('Something went wrong.')
         })
         .finally(() => {
           setDeletingId('')
@@ -44,11 +44,20 @@ const TripsClient: React.FC<TripsClientProps> = ({
 
   return (
     <Container>
-      <Heading
-        title='Trips'
-        subtitle="Where you've been and where you're going"
-      />
-      <div className='mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8'>
+      <Heading title='Reservations' subtitle='Bookings on your properties' />
+      <div
+        className='
+          mt-10
+          grid 
+          grid-cols-1 
+          sm:grid-cols-2 
+          md:grid-cols-3 
+          lg:grid-cols-4
+          xl:grid-cols-5
+          2xl:grid-cols-6
+          gap-8
+        '
+      >
         {reservations.map((reservation: any) => (
           <ListingCard
             key={reservation.id}
@@ -57,8 +66,9 @@ const TripsClient: React.FC<TripsClientProps> = ({
             actionId={reservation.id}
             onAction={onCancel}
             disabled={deletingId === reservation.id}
-            actionLabel='Cancel reservation'
+            actionLabel='Cancel guest reservation'
             currentUser={currentUser}
+            author={reservation.user}
           />
         ))}
       </div>
@@ -66,4 +76,4 @@ const TripsClient: React.FC<TripsClientProps> = ({
   )
 }
 
-export default TripsClient
+export default ReservationsClient
