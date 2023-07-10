@@ -37,10 +37,7 @@ const SearchModal = () => {
   const [bathroomCount, setBathroomCount] = useState(1)
   const [dateRange, setDateRange] = useState<Range>(initialDateRange)
 
-  const Map = useMemo(
-    () => dynamic(() => import('../Map'), { ssr: false }),
-    [location]
-  )
+  const Map = useMemo(() => dynamic(() => import('../Map'), { ssr: false }), [])
 
   const onBack = useCallback(() => {
     setStep(value => value - 1)
