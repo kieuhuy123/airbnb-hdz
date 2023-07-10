@@ -21,7 +21,7 @@ const TripsClient: React.FC<TripsClientProps> = ({
 }) => {
   const router = useRouter()
   const [deletingId, setDeletingId] = useState('')
-  console.log('reservations', reservations)
+
   const onCancel = useCallback(
     (id: string) => {
       setDeletingId(id)

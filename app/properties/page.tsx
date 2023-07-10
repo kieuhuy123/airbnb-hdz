@@ -13,7 +13,7 @@ const PropertiesPage = async () => {
   }
 
   const listings = await getListings({ userId: currentUser.id })
-  console.log('listings', listings)
+
   if (listings?.length === 0) {
     return (
       <EmptyState

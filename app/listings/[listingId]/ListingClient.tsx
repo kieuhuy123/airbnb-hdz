@@ -36,8 +36,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
   const [isLoading, setIsLoading] = useState(false)
   const [totalPrice, setTotalPrice] = useState(listing.price)
   const [dateRange, setDateRange] = useState<Range>(initialDateRange)
-  console.log('listing', listing)
-  console.log('reservations', reservations)
+
   const onCreateReservation = useCallback(() => {
     if (!currentUser) {
       return loginModal.onOpen()
@@ -72,7 +71,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
         dateRange.endDate,
         dateRange.startDate
       )
-      console.log('dayCount', dayCount)
+
       if (dayCount && listing.price) {
         setTotalPrice(dayCount * listing.price)
       } else {

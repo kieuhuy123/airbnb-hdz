@@ -14,8 +14,6 @@ const ReservationsPage = async () => {
 
   const reservations = await getReservations({ authorId: currentUser.id })
 
-  console.log('reservations', reservations)
-
   if (reservations.length === 0) {
     return (
       <EmptyState
