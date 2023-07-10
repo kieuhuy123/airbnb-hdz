@@ -24,9 +24,7 @@ const RegisterModal = () => {
     handleSubmit,
     formState: { errors }
   } = useForm<FieldValues>({
-    name: '',
-    email: '',
-    password: ''
+    defaultValues: { name: '', email: '', password: '' }
   })
 
   const onSubmit: SubmitHandler<FieldValues> = data => {
