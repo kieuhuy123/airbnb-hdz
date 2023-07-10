@@ -64,14 +64,24 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                     }}
                     label='My trips'
                   ></MenuItem>
-                  <MenuItem onClick={() => {}} label='My favorites'></MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      router.push('/favorites')
+                    }}
+                    label='My favorites'
+                  ></MenuItem>
                   <MenuItem
                     onClick={() => {
                       router.push('/reservations')
                     }}
                     label='My reservations'
                   ></MenuItem>
-                  <MenuItem onClick={() => {}} label='My properties'></MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      router.push('/properties')
+                    }}
+                    label='My properties'
+                  ></MenuItem>
                   <MenuItem
                     onClick={rentModal.onOpen}
                     label='Airbnb my home'
