@@ -22,7 +22,7 @@ const Search = () => {
       return getByValue(locationValue as string)?.label
     }
 
-    return 'Anywhere'
+    return 'Địa điểm bất kỳ'
   }, [locationValue, getByValue])
 
   const durationLabel = useMemo(() => {
@@ -38,7 +38,7 @@ const Search = () => {
       return `${diff} Days`
     }
 
-    return 'Any Week'
+    return 'Tuần bất kỳ'
   }, [startDate, endDate])
 
   const guestLabel = useMemo(() => {
@@ -46,7 +46,7 @@ const Search = () => {
       return `${guestCount} Guests`
     }
 
-    return 'Add Guests'
+    return 'Thêm khách'
   }, [guestCount])
   return (
     <div
@@ -55,11 +55,11 @@ const Search = () => {
     >
       <div className='flex flex-row items-center justify-between'>
         <span className='text-sm font-semibold px-6'>{locationLabel}</span>
-        <span className='hidden sm:block text-sm font-semibold px-6 border-x-[1px] flex-1 text-center'>
+        <span className='hidden lg:block text-sm font-semibold px-6 border-x-[1px] flex-1 text-center'>
           {durationLabel}
         </span>
         <div className='text-sm pl-6 pr-2 text-gray-600 flex flex-row items-center gap-3'>
-          <div className='hidden sm:block'>{guestLabel}</div>
+          <div className='hidden lg:block'>{guestLabel}</div>
           <div className='p-2 bg-rose-500 rounded-full text-white'>
             <BiSearch size={18} />
           </div>

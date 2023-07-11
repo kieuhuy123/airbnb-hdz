@@ -6,7 +6,7 @@ import TripsClient from './TripsClient'
 const TripsPage = async () => {
   const currentUser = await getCurrentUser()
   if (!currentUser) {
-    return <EmptyState title='Unauthorized' subtitle='Please login' />
+    return <EmptyState title='Không được phép' subtitle='Hãy đăng nhập' />
   }
 
   const reservations = await getReservations({
@@ -16,8 +16,8 @@ const TripsPage = async () => {
   if (reservations.length === 0) {
     return (
       <EmptyState
-        title='No trips found'
-        subtitle='Looks like you havent  reserved any trips'
+        title='Không tìm thấy chuyến đi nào'
+        subtitle='Có vẻ như bạn chưa đặt trước bất kỳ chuyến đi nào'
       />
     )
   }

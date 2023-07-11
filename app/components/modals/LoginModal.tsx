@@ -56,12 +56,13 @@ const LoginModal = () => {
   const bodyContent = (
     <div className='flex flex-col gap-4'>
       <Heading
-        title='Welcome to Airbnb'
-        subtitle='Login to your account'
+        title='Chào mừng đến với Airbnb'
+        subtitle='Đăng nhập vào tài khoản của bạn'
       ></Heading>
       <Input
         id='email'
         label='Email'
+        type='email'
         disabled={isLoading}
         errors={errors}
         register={register}
@@ -70,7 +71,7 @@ const LoginModal = () => {
 
       <Input
         id='password'
-        label='Password'
+        label='Mật khẩu'
         type='password'
         disabled={isLoading}
         errors={errors}
@@ -85,36 +86,36 @@ const LoginModal = () => {
       <hr />
       <Button
         outline
-        label='Continue with Google'
+        label='Tiếp tục với Google'
         icon={FcGoogle}
         onClick={() => {
           signIn('google')
         }}
       />
-      <Button
+      {/* <Button
         outline
         label='Continue with Github'
         icon={AiFillGithub}
         onClick={() => {
           signIn('github')
         }}
-      />
+      /> */}
       <div className='text-neutral-500 text-center mt-4 font-light'>
-        <span className='mr-3'>{'First time using Airbnb?'}</span>
+        <span className='mr-3'>{'Lần đầu đến với Home-hdz?'}</span>
         <span
           onClick={toggle}
           className='text-neutral-800 cursor-pointer hover:underline'
         >
-          {'Create account'}
+          {'Đăng ký'}
         </span>
       </div>
     </div>
   )
   return (
     <Modal
-      actionLabel='Continue'
+      actionLabel='Tiếp tục'
       secondaryActionLabel='test'
-      title='Login'
+      title='Đăng nhập'
       body={bodyContent}
       footer={footerContent}
       disabled={isLoading}

@@ -29,11 +29,11 @@ const ReservationsClient: React.FC<ReservationsClientProps> = ({
       axios
         .delete(`/api/reservations/${id}`)
         .then(() => {
-          toast.success('Reservation cancelled')
+          toast.success('Đã hủy đặt phòng')
           router.refresh()
         })
         .catch(() => {
-          toast.error('Something went wrong.')
+          toast.error('Đã xảy ra sự cố.')
         })
         .finally(() => {
           setDeletingId('')
@@ -44,7 +44,7 @@ const ReservationsClient: React.FC<ReservationsClientProps> = ({
 
   return (
     <Container>
-      <Heading title='Reservations' subtitle='Bookings on your properties' />
+      <Heading title='Đặt phòng' subtitle='Đặt phòng trên tài sản của bạn' />
       <div
         className='
           mt-10
@@ -66,7 +66,7 @@ const ReservationsClient: React.FC<ReservationsClientProps> = ({
             actionId={reservation.id}
             onAction={onCancel}
             disabled={deletingId === reservation.id}
-            actionLabel='Cancel guest reservation'
+            actionLabel='Hủy đặt phòng'
             currentUser={currentUser}
             author={reservation.user}
           />

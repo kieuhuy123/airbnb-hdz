@@ -7,6 +7,7 @@ import Image from 'next/image'
 import HeartButton from '../HeartButton'
 import Button from '../Button'
 import { format } from 'date-fns'
+import vi from 'date-fns/locale/vi'
 import Avatar from '../Avatar'
 
 interface ListingCardProps {
@@ -63,7 +64,11 @@ const ListingCard: React.FC<ListingCardProps> = ({
     const start = new Date(reservation.startDate)
     const end = new Date(reservation.endDate)
 
-    return `${format(start, 'PP')} - ${format(end, 'PP')}`
+    return `${format(start, 'dd MMM,yyyy', { locale: vi })} - ${format(
+      end,
+      'dd MMM,yyyy',
+      { locale: vi }
+    )}`
   }, [reservation])
 
   return (
@@ -102,7 +107,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
         </div>
         <div className='flex flex-row items-center gap-1'>
           <div className='font-semibold'>$ {price}</div>
-          {!reservation && <div className='font-light'>night</div>}
+          {!reservation && <div className='font-light'>{'/ đêm'}</div>}
         </div>
         {onAction && actionLabel && (
           <Button

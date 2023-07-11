@@ -9,7 +9,7 @@ const ReservationsPage = async () => {
   const currentUser = await getCurrentUser()
 
   if (!currentUser) {
-    return <EmptyState title='Unauthorized' subtitle='Please login' />
+    return <EmptyState title='Không được phép' subtitle='Hãy đăng nhập' />
   }
 
   const reservations = await getReservations({ authorId: currentUser.id })
@@ -17,8 +17,8 @@ const ReservationsPage = async () => {
   if (reservations.length === 0) {
     return (
       <EmptyState
-        title='No reservations found'
-        subtitle='Looks like you have no reservations on your properties.'
+        title='Không có đặt phòng nào'
+        subtitle='Có vẻ như bạn không có đặt phòng trên tài sản của bạn.'
       />
     )
   }

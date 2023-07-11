@@ -38,9 +38,9 @@ const useFavorite = ({ listingId, currentUser }: IUseFavorite) => {
 
         await request()
         router.refresh()
-        toast.success('Add like post success')
+        toast.success('Cập nhật')
       } catch (err) {
-        toast.error('Some thing went wrong.')
+        toast.error('Đã xảy ra sự cố.')
       }
     },
     [currentUser, hasFavorited, listingId, loginModal, router]

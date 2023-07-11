@@ -19,79 +19,79 @@ import CategoryBox from './CategoryBox'
 import { usePathname, useSearchParams } from 'next/navigation'
 export const categories = [
   {
-    label: 'Beach',
+    label: 'Bãi biển',
     icon: TbBeach,
-    description: 'This property is close to the beach!'
+    description: 'Khách sạn này gần bãi biển!'
   },
   {
-    label: 'Windmills',
+    label: 'Cối xay gió',
     icon: GiWindmill,
-    description: 'This property is has windmills!'
+    description: 'Chỗ ở này có cối xay gió'
   },
   {
-    label: 'Modern',
+    label: 'Hiện đại',
     icon: MdOutlineVilla,
-    description: 'This property is modern!'
+    description: 'Khách sạn này rất hiện đại!'
   },
   {
-    label: 'Countryside',
+    label: 'Nông thôn',
     icon: TbMountain,
-    description: 'This property is in the countryside!'
+    description: 'Nơi ở này gần nông thôn!'
   },
   {
-    label: 'Pools',
+    label: 'Hồ bơi',
     icon: TbPool,
-    description: 'This is property has a beautiful pool!'
+    description: 'Nởi ở này có một hồ bơi rất đẹp!'
   },
   {
-    label: 'Islands',
+    label: 'Quần đảo',
     icon: GiIsland,
-    description: 'This property is on an island!'
+    description: 'Nơi ở này là một hòn đảo!'
   },
   {
-    label: 'Lake',
+    label: 'Hồ',
     icon: GiBoatFishing,
-    description: 'This property is near a lake!'
+    description: 'Nơi ở này gần một con hồ!'
   },
   {
-    label: 'Skiing',
+    label: 'Trượt tuyết',
     icon: FaSkiing,
-    description: 'This property has skiing activies!'
+    description: 'Nơi ở này có các hoạt động trượt tuyết!'
   },
   {
-    label: 'Castles',
+    label: 'Lâu đài',
     icon: GiCastle,
-    description: 'This property is an ancient castle!'
+    description: 'Khách sạn này là một lâu đài cổ!'
   },
   {
-    label: 'Caves',
+    label: 'Hang động',
     icon: GiCaveEntrance,
-    description: 'This property is in a spooky cave!'
+    description: 'Khách sạn này nằm trong một hang động ma quái!'
   },
   {
-    label: 'Camping',
+    label: 'Cắm trại',
     icon: GiForestCamp,
-    description: 'This property offers camping activities!'
+    description: 'Nơi lưu trú này cung cấp các hoạt động cắm trại!'
   },
   {
-    label: 'Arctic',
-    icon: BsSnow,
-    description: 'This property is in arctic environment!'
-  },
-  {
-    label: 'Desert',
+    label: 'Sa mạc',
     icon: GiCactus,
-    description: 'This property is in the desert!'
+    description: 'Nơi lưu trú này nằm trong môi trường sa mạc!'
   },
   {
-    label: 'Barns',
+    label: 'Bắc cực',
+    icon: BsSnow,
+    description: 'Nơi lưu trú này nằm trong môi trường Bắc cực!'
+  },
+  {
+    label: 'Chuồng trại',
     icon: GiBarn,
-    description: 'This property is in a barn!'
+    description: 'Nơi ở này có chuồng trại!'
   },
   {
-    label: 'Lux',
+    label: 'Sang trọng',
     icon: IoDiamond,
-    description: 'This property is brand new and luxurious!'
+    description: 'Khách sạn này là thương hiệu mới và sang trọng!'
   }
 ]
 

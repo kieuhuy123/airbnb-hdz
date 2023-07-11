@@ -95,14 +95,14 @@ const RentModal = () => {
     axios
       .post('/api/listings', data)
       .then(() => {
-        toast.success('Listing Created!')
+        toast.success('Tạo phòng cho thuê!')
         router.refresh()
         reset()
         setStep(STEPS.CATEGORY)
         rentModal.onClose()
       })
       .catch(() => {
-        toast.error('Something went wrong')
+        toast.error('Đã xảy ra sự cố')
       })
       .finally(() => {
         setIsLoading(false)
@@ -111,10 +111,10 @@ const RentModal = () => {
 
   const actionLabel = useMemo(() => {
     if (step === STEPS.PRICE) {
-      return 'Create'
+      return 'Xong'
     }
 
-    return 'Next'
+    return 'Tiếp theo'
   }, [step])
 
   const secondaryActionLabel = useMemo(() => {
@@ -122,14 +122,14 @@ const RentModal = () => {
       return undefined
     }
 
-    return 'Back'
+    return 'Quay lại'
   }, [step])
 
   let bodyContent = (
     <div className='flex flex-col gap-8'>
       <Heading
-        title='Which of these best describes your place?'
-        subtitle='Pick a category'
+        title='Điều nào sau đây mô tả đúng nhất vị trí của bạn?'
+        subtitle='Chọn một danh mục'
       />
       <div className='grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto'>
         {categories.map(item => (
@@ -152,8 +152,8 @@ const RentModal = () => {
     bodyContent = (
       <div className='flex flex-col gap-8'>
         <Heading
-          title='Where is your place located?'
-          subtitle='Help guests find you'
+          title='Nơi của bạn nằm ở đâu?'
+          subtitle='Giúp khách tìm thấy bạn'
         />
         <CountrySelect
           value={location}
@@ -170,24 +170,24 @@ const RentModal = () => {
     bodyContent = (
       <div className='flex flex-col gap-8'>
         <Heading
-          title='Share some basics about your place'
-          subtitle='What amenities do you have?'
+          title='Chia sẻ một số thông tin cơ bản về địa điểm của bạn'
+          subtitle='Bạn có những tiện ích gì?'
         />
         <Counter
-          title='Guests'
-          subtitle='How many guests do your allow?'
+          title='Khách'
+          subtitle='Bạn cho phép bao nhiêu khách?'
           value={guestCount}
           onChange={value => setCustomValue('guestCount', value)}
         />
         <Counter
-          title='Rooms'
-          subtitle='How many rooms do you have?'
+          title='Phòng ngủ'
+          subtitle='Bạn có bao nhiêu phòng ngủ?'
           value={roomCount}
           onChange={value => setCustomValue('roomCount', value)}
         />
         <Counter
-          title='Bathrooms'
-          subtitle='How many bathrooms do you have?'
+          title='Phòng tắm'
+          subtitle='Bạn có bao nhiêu phòng tắm?'
           value={bathroomCount}
           onChange={value => setCustomValue('bathroomCount', value)}
         />
@@ -199,8 +199,8 @@ const RentModal = () => {
     bodyContent = (
       <div className='flex flex-col gap-8'>
         <Heading
-          title='Add a photo of your place'
-          subtitle='Show guests what your place looks like!'
+          title='Thêm ảnh về địa điểm của bạn'
+          subtitle='Cho khách thấy địa điểm của bạn trông như thế nào!'
         />
 
         <ImageUpload
@@ -217,12 +217,12 @@ const RentModal = () => {
     bodyContent = (
       <div className='flex flex-col gap-8'>
         <Heading
-          title='How would you describe your place'
-          subtitle='Short and sweet works best!'
+          title='Mô tả vị chỗ ở của bạn'
+          subtitle='Ngắn gọn và súc tích!'
         />
         <Input
           id='title'
-          label='Title'
+          label='Tiêu đề'
           disabled={isLoading}
           register={register}
           errors={errors}
@@ -231,7 +231,7 @@ const RentModal = () => {
         <hr />
         <Input
           id='description'
-          label='Description'
+          label='Mô tả'
           disabled={isLoading}
           register={register}
           errors={errors}
@@ -245,12 +245,12 @@ const RentModal = () => {
     bodyContent = (
       <div className='flex flex-col gap-8'>
         <Heading
-          title='Now, set your price'
-          subtitle='How much do you charge per night'
+          title='Bây giờ, hãy đặt giá của bạn'
+          subtitle='Bạn tính phí bao nhiêu một đêm'
         />
         <Input
           id='price'
-          label='Price'
+          label='Giá phòng'
           formatPrice
           type='number'
           disabled={isLoading}
@@ -260,16 +260,14 @@ const RentModal = () => {
       </div>
     )
   }
-  const footerContent = <h1></h1>
 
   return (
     <Modal
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
       secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
-      title='Airbnb your home!'
+      title='Cho thuê chỗ ở'
       body={bodyContent}
-      footer={footerContent}
       disabled={isLoading}
       isOpen={rentModal.isOpen}
       onClose={rentModal.onClose}

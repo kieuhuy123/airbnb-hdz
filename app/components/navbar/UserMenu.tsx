@@ -40,21 +40,21 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             className='hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer'
             onClick={onRent}
           >
-            Airbnb your home
+            {'Cho thuê chỗ ở'}
           </div>
           <div
-            className='p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition'
+            className='p-4 lg:py-1 lg:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition'
             onClick={toggleOpen}
           >
             <AiOutlineMenu />
-            <div className='hidden md:block'>
+            <div className='hidden lg:block'>
               <Avatar src={currentUser?.image} />
             </div>
           </div>
         </div>
 
         {isOpen && (
-          <div className='absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm'>
+          <div className='absolute rounded-xl shadow-md w-[40vw] md:w-full bg-white overflow-hidden right-0 top-12 text-sm'>
             <div className='flex flex-col cursor-pointer'>
               {currentUser ? (
                 <>
@@ -62,47 +62,47 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                     onClick={() => {
                       router.push('/trips')
                     }}
-                    label='My trips'
+                    label='Chuyến đi của tôi'
                   ></MenuItem>
                   <MenuItem
                     onClick={() => {
                       router.push('/favorites')
                     }}
-                    label='My favorites'
+                    label='Danh sách yêu thích'
                   ></MenuItem>
                   <MenuItem
                     onClick={() => {
                       router.push('/reservations')
                     }}
-                    label='My reservations'
+                    label='Quản lý đặt phòng'
                   ></MenuItem>
                   <MenuItem
                     onClick={() => {
                       router.push('/properties')
                     }}
-                    label='My properties'
+                    label='Phòng của tôi'
                   ></MenuItem>
                   <MenuItem
                     onClick={rentModal.onOpen}
-                    label='Airbnb my home'
+                    label='Cho thuê chỗ ở'
                   ></MenuItem>
                   <hr />
                   <MenuItem
                     onClick={() => {
                       signOut()
                     }}
-                    label='Logout'
+                    label='Đăng xuất'
                   ></MenuItem>
                 </>
               ) : (
                 <>
                   <MenuItem
                     onClick={loginModal.onOpen}
-                    label='Login'
+                    label='Đăng nhập'
                   ></MenuItem>
                   <MenuItem
                     onClick={registerModal.onOpen}
-                    label='Sign up'
+                    label='Đăng ký'
                   ></MenuItem>
                 </>
               )}

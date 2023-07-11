@@ -12,8 +12,8 @@ const FavoritePage = async () => {
   if (listings.length === 0) {
     return (
       <EmptyState
-        title='No favorites found'
-        subtitle='Looks like you have no favorite listings.'
+        title='Không tìm thấy địa điểm yêu thích nào'
+        subtitle='Có vẻ như bạn không có danh sách yêu thích.'
       />
     )
   }

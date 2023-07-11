@@ -9,7 +9,7 @@ const PropertiesPage = async () => {
   const currentUser = await getCurrentUser()
 
   if (!currentUser) {
-    return <EmptyState title='Unauthorized' subtitle='Please login' />
+    return <EmptyState title='Không được phép' subtitle='Hãy đăng nhập' />
   }
 
   const listings = await getListings({ userId: currentUser.id })
@@ -17,8 +17,8 @@ const PropertiesPage = async () => {
   if (listings?.length === 0) {
     return (
       <EmptyState
-        title='No properties found'
-        subtitle='Looks like you have no properties.'
+        title='Không có phòng nào bạn cho thuê'
+        subtitle='Có vẻ bạn chưa đăng ký cho thuê phòng.'
       />
     )
   }

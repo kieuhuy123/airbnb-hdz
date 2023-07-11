@@ -33,12 +33,12 @@ const RegisterModal = () => {
     axios
       .post('/api/register', data)
       .then(() => {
-        toast.success('Register success!')
+        toast.success('Đăng ký thành công!')
         registerModal.onClose()
         loginModal.onOpen()
       })
       .catch(error => {
-        toast.error('Some thing went wrong.')
+        toast.error('Đã xảy ra sự cố.')
       })
       .finally(() => {
         setIsLoading(false)
@@ -52,7 +52,10 @@ const RegisterModal = () => {
 
   const bodyContent = (
     <div className='flex flex-col gap-4'>
-      <Heading title='Welcome to Airbnb' subtitle='Create an account'></Heading>
+      <Heading
+        title='Chào mừng đến với Home-hdz'
+        subtitle='Tạo tài khoản'
+      ></Heading>
       <Input
         id='email'
         label='Email'
@@ -63,7 +66,7 @@ const RegisterModal = () => {
       />
       <Input
         id='name'
-        label='Name'
+        label='Tên'
         disabled={isLoading}
         errors={errors}
         register={register}
@@ -71,7 +74,7 @@ const RegisterModal = () => {
       />
       <Input
         id='password'
-        label='Password'
+        label='Mật khẩu'
         type='password'
         disabled={isLoading}
         errors={errors}
@@ -86,36 +89,36 @@ const RegisterModal = () => {
       <hr />
       <Button
         outline
-        label='Continue with Google'
+        label='Tiếp tục với Google'
         icon={FcGoogle}
         onClick={() => {
           signIn('google')
         }}
       />
-      <Button
+      {/* <Button
         outline
         label='Continue with Github'
         icon={AiFillGithub}
         onClick={() => {
           signIn('github')
         }}
-      />
+      /> */}
       <div className='text-neutral-500 text-center mt-4 font-light'>
-        <span className='mr-3'>Already have an account</span>
+        <span className='mr-3'>{'Bạn đã có tài khoản'}</span>
         <span
           onClick={toggle}
           className='text-neutral-800 cursor-pointer hover:underline'
         >
-          Log in
+          {'Đăng nhập'}
         </span>
       </div>
     </div>
   )
   return (
     <Modal
-      actionLabel='Continue'
+      actionLabel='Tiếp tục'
       secondaryActionLabel='test'
-      title='Register'
+      title='Đăng ký'
       body={bodyContent}
       footer={footerContent}
       disabled={isLoading}
