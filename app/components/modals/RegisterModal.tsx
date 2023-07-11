@@ -66,7 +66,7 @@ const RegisterModal = () => {
       />
       <Input
         id='name'
-        label='Tên'
+        label='Họ tên'
         disabled={isLoading}
         errors={errors}
         register={register}
