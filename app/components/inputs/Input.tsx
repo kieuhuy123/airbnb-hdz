@@ -64,7 +64,7 @@ const Input: React.FC<InputProps> = ({
         <small className='text-red-600'>{`${label} không được để trống`}</small>
       )}
       {errors[id]?.message && (
-        <small className='text-red-600'>{`${errors[id].message}`}</small>
+        <small className='text-red-600'>{`${errors[id]?.message}`}</small>
       )}
 
       <label
