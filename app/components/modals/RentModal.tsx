@@ -1,13 +1,12 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import useRentModal from '@/app/hooks/useRentModal'
 import Modal from './Modal'
 import Heading from '../Heading'
 import CategoryInput from '../inputs/CategoryInput'
 import { toast } from 'react-hot-toast'
-import Button from '../Button'
 import { useRouter } from 'next/navigation'
 import { categories } from '../navbar/Categories'
 import CountrySelect from '../inputs/CountrySelect'
@@ -76,6 +75,7 @@ const RentModal = () => {
       shouldDirty: true,
       shouldTouch: true
     })
+    setIsLoading(false)
   }
   const onBack = () => {
     setStep(value => value - 1)
@@ -84,6 +84,16 @@ const RentModal = () => {
   const onNext = () => {
     setStep(value => value + 1)
   }
+
+  useEffect(() => {
+    if (
+      (!category && step === STEPS.CATEGORY) ||
+      (!location && step === STEPS.LOCATION) ||
+      (!imageSrc && step === STEPS.IMAGES)
+    ) {
+      setIsLoading(true)
+    }
+  }, [category, location, guestCount, roomCount, imageSrc, setCustomValue])
 
   const onSubmit: SubmitHandler<FieldValues> = data => {
     if (step !== STEPS.PRICE) {
